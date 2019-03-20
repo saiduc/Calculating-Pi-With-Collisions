@@ -2,7 +2,6 @@ class block():
     def __init__(self, position, mass):
         self.x = position   # block position
         self.m = mass       # block mass
-        self.p = 0          # block momentum
         self.v = 0          # block velocity
 
     def move(self):
@@ -11,6 +10,13 @@ class block():
         simply adds velocity to current position
         """
         self.x = self.x + self.v
+
+    def collide(self, block):
+        self.v = (2*block.m*block.v + self.m*self.v -
+                  block.m*self.v)/(self.m+block.m)
+
+    def reflect(self):
+        self.v = -1*self.v
 
 
 blockA = block(1, 1)

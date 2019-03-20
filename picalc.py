@@ -105,4 +105,5 @@ if __name__ == '__main__':
 
         else:
             pass
-    print("pi is", counter)
+    pi = str(counter)[:1]+'.'+str(counter)[1:]
+    print('pi is', pi)

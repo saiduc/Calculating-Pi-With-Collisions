@@ -18,6 +18,15 @@ class block():
     def reflect(self):
         self.v = -1*self.v
 
+    def willCollide(self, block):
+        if self.v >= 0 and block.v >= 0:
+            if block.v > self.v:
+                return False
+            else:
+                return True
+        else:
+            return True
+
 
 blockA = block(1, 1)
 blockB = block(5, 100)

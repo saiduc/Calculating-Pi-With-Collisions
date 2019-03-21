@@ -1,4 +1,5 @@
 from fractions import Fraction
+import argparse
 
 
 class block:
@@ -74,10 +75,16 @@ def timeToCollide(leftBlock, rightBlock):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "precision", help="input number of decimal places required")
+    args = parser.parse_args()
+
+    n = int(args.precision)
     # define initial values for blockA and blockB
     # mass of blockB is a power of 100. Number of digits of pi is power+1
     blockA = block(Fraction(50, 10), 1)
-    blockB = block(Fraction(70, 10), 100**2)
+    blockB = block(Fraction(70, 10), 100**n)
     blockB.v = Fraction(-1, 1)
 
     # speeds up program by limiting float length

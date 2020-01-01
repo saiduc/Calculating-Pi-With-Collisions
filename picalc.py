@@ -83,15 +83,10 @@ if __name__ == '__main__':
     n = int(args.precision)
     # define initial values for blockA and blockB
     # mass of blockB is a power of 100. Number of digits of pi is power+1
-    blockA = block(Fraction(50, 10), 1)
-    blockB = block(Fraction(70, 10), 100**n)
+    blockA = block(Fraction(1, 1), 1)
+    blockB = block(Fraction(2, 1), 100**n)
     blockB.v = Fraction(-1, 1)
 
-    # speeds up program by limiting float length
-    blockA.x = blockA.x.limit_denominator(2**16)
-    blockB.x = blockB.x.limit_denominator(2**16)
-    blockA.v = blockA.v.limit_denominator(2**16)
-    blockB.v = blockB.v.limit_denominator(2**16)
 
     counter = 0
     while timeToCollide(blockA, blockB) != float("inf"):
@@ -112,5 +107,12 @@ if __name__ == '__main__':
 
         else:
             pass
+
+        # speeds up program by limiting float length
+        blockA.x = blockA.x.limit_denominator(2**32)
+        blockB.x = blockB.x.limit_denominator(2**32)
+        blockA.v = blockA.v.limit_denominator(2**32)
+        blockB.v = blockB.v.limit_denominator(2**32)
+
     pi = str(counter)[:1]+'.'+str(counter)[1:]
     print('pi is', pi)
